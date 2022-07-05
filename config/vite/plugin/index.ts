@@ -34,7 +34,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   vitePlugins.push(configAutoComponentsPlugin())
 
   // unplugin-auto-import
-  vitePlugins.push(configAutoImportPlugin())
+  // vitePlugins.push(configAutoImportPlugin())
 
   // The following plugins only work in the production environment
   if (isBuild) {
