@@ -36,14 +36,14 @@ export const routes: Array<RouteRecordRaw> = [
     },
     component: HomeView
   },
-  // {
-  //   path: "/user",
-  //   name: "User",
-  //   component: () => import("@/views/shared/user/user.vue"),
-  //   meta: {
-  //     title: "个人中心",
-  //   },
-  // },
+  {
+    path: "/about",
+    name: "about",
+    component: () => import("@/views/HomeView.vue"),
+    meta: {
+      title: "个人中心"
+    }
+  },
   ...common,
   // ...control,
   ...bizRoute,
