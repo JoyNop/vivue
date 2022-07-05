@@ -22,7 +22,7 @@ import { createRouterGuards } from "./router-guards"
 export const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "Home",
+    name: "index",
     redirect: "/home",
     meta: {
       title: "首页"

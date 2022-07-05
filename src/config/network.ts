@@ -8,7 +8,8 @@ const env = getAppEnvConfig()
 export const CLIENT_ID = env.VITE_USE_CLIENT_ID
 export const AUTH_API = "auth"
 export const BLAST_API = "blast"
-export const WEB_DOMAIN = env.VITE_USE_WEB_DOMAIN
+// export const WEB_DOMAIN = env.VITE_USE_WEB_DOMAIN
+export const WEB_DOMAIN = location.hostname
 export const WEB_API = `//api.${WEB_DOMAIN}`
 
 const getApiUrl = () => {

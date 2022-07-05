@@ -6,14 +6,14 @@ export const access_token = Cookies.get("token")
 const createCookie = () => {
   const path = "/"
   class JsCookie {
-    set(key: string, value: any) {
+    set(key: string, value: any = "") {
       try {
         const stringData = JSON.stringify({
           value
         })
         console.log("WEB_DOMAIN", WEB_DOMAIN)
 
-        Cookies.set(key, stringData, { domain: `.${WEB_DOMAIN}`, path: path })
+        Cookies.set(key, value, { domain: `${WEB_DOMAIN}`, path: path })
       } catch (error) {
         console.log(error)
       }
@@ -22,10 +22,11 @@ const createCookie = () => {
     get(key: string) {
       try {
         const strData = Cookies.get(key)
-        if (strData) {
-          const JsonData = JSON.parse(strData)
-          return JsonData.value
-        }
+        return strData
+        // if (strData) {
+        //   const JsonData = JSON.parse(strData)
+        //   return JsonData.value
+        // }
       } catch (error) {
         console.log(error)
       }

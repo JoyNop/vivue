@@ -27,8 +27,8 @@ const allowList = [
   "auth-signin"
 ] // no redirect whitelist
 
-const loginRoutePath = "/auth/login"
-const defaultRoutePath = "/account"
+const loginRoutePath = "/login"
+const defaultRoutePath = "/home"
 
 // 是否需要从后端获取菜单
 // const isGetMenus = debounce(
@@ -63,6 +63,8 @@ export function createRouterGuards(router: Router) {
   router.beforeEach((to, from, next) => {
     NProgress.start() // start progress bar
     // const token = useStore.user().getToken;
+    console.log(to, from)
+
     const token = access_token
     if (token) {
       if (to.name === "login") {
@@ -70,6 +72,7 @@ export function createRouterGuards(router: Router) {
         NProgress.done()
       } else {
         const hasRoute = router.hasRoute(to.name!)
+
         // 如果不需要每次切换路由获取最新的动态路由，可把下面注释放开
         if (allowList.includes(to.name as string) || hasRoute) {
           // 在免登录名单，直接进入
