@@ -1,4 +1,5 @@
 /// <reference types="vite/client" />
+
 declare interface ViteEnv {
   VITE_ENV: string
   VITE_OUTPUT_DIR: string
@@ -11,8 +12,4 @@ declare interface ViteEnv {
 
   VITE_BUILD_COMPRESS: "gzip" | "brotli" | "none"
   VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE: boolean
-}
-declare type Recordable<T = any> = Record<string, T>
-declare type ReadonlyRecordable<T = any> = {
-  readonly [key: string]: T
 }

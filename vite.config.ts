@@ -3,10 +3,10 @@ import pkg from "./package.json"
 import dayjs from "dayjs"
 import { defineConfig, loadEnv } from "vite"
 import type { ConfigEnv } from "vite"
-import { wrapperEnv } from "./config/utils"
-import { createVitePlugins } from "./config/vite/plugin"
-import { createProxy } from "./config/vite/proxy"
-import { createBuild } from "./config/vite/build"
+import { wrapperEnv } from "./framework_config/utils"
+import { createVitePlugins } from "./framework_config/vite/plugin"
+import { createProxy } from "./framework_config/vite/proxy"
+import { createBuild } from "./framework_config/vite/build"
 
 const { dependencies, devDependencies, name, version } = pkg
 // 应用信息

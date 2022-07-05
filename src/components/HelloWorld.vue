@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { useAppStore } from "@/store/modules/app"
 import { message } from "ant-design-vue"
 import { onMounted, ref } from "vue"
-const visible = ref<boolean>(false)
 
+const visible = ref<boolean>(false)
 const showModal = () => {
   visible.value = true
 }
