@@ -1,15 +1,32 @@
 <script setup lang="ts">
+import { message } from "ant-design-vue"
 import { onMounted, ref } from "vue"
+const visible = ref<boolean>(false)
 
+const showModal = () => {
+  visible.value = true
+}
+
+const handleOk = (e: MouseEvent) => {
+  console.log(e)
+  visible.value = false
+}
 defineProps<{ msg: string }>()
 onMounted(() => {
   console.log(1111)
+  message.success("hello world")
 })
 
 const count = ref(0)
 </script>
 
 <template>
+  <a-button type="primary" @click="showModal">Open Modal</a-button>
+  <a-modal v-model:visible="visible" title="Basic Modal" @ok="handleOk">
+    <p>Some contents...</p>
+    <p>Some contents...</p>
+    <p>Some contents...</p>
+  </a-modal>
   <h1>{{ msg }}</h1>
 
   <p>

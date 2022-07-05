@@ -39,7 +39,7 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
         less: {
           charset: false,
           javascriptEnabled: true,
-          additionalData: `@import "./src/style/theme.less";`
+          additionalData: `@import "./src/styles/antd-variables.less";`
           // modifyVars: {
           //   // "@primary-color": "red",
           // },
