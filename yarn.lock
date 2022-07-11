@@ -402,6 +402,11 @@
   resolved "https://registry.npmmirror.com/@trysound/sax/-/sax-0.2.0.tgz#cccaab758af56761eb7bf37af6f03f326dd798ad"
   integrity sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==
 
+"@types/fabric@^4.5.9":
+  version "4.5.9"
+  resolved "https://registry.npmmirror.com/@types/fabric/-/fabric-4.5.9.tgz#25c34dbc2da243cd7fb56142952e256fa2464302"
+  integrity sha512-z7RvtGb93l8tCcaWyJK3fYrshqcBqAqdMlIHhwkK4efZ1wBktFHx+XiGXr8o6bvIZhvsHeXHK39S6M9gutL3dg==
+
 "@types/js-cookie@^3.0.2":
   version "3.0.2"
   resolved "https://registry.npmmirror.com/@types/js-cookie/-/js-cookie-3.0.2.tgz#451eaeece64c6bdac8b2dde0caab23b085899e0d"
