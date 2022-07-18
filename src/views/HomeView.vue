@@ -7,6 +7,7 @@
 <script lang="ts" setup>
 import { fabric } from "fabric"
 import { onMounted, reactive, ref } from "vue"
+import { f_config } from "./config"
 
 let fabricRef: fabric.Canvas
 // const fabricRef = ref<fabric.Canvas>()
@@ -35,7 +36,7 @@ const updateCanvasContext = () => {
   }
 }
 
-const init1 = () => {
+const init = () => {
   if (canvas.value) {
     const options = {
       backgroundColor: "rgba(238, 238, 255, 0.458)",
@@ -56,77 +57,6 @@ const init1 = () => {
         opt.e.stopPropagation()
       }
     })
-    fabricRef.on("mouse:up", (e) => {
-      console.log(e)
-      // let active = e.target
-      // if (active) {
-      //   active.set({ fill: "blue" })
-
-      //   fabricRef.renderAll()
-      // }
-      const { absolutePointer, currentSubTargets } = e
-      const active = currentSubTargets ? currentSubTargets[0] : null
-
-      // getScene(absolutePointer)
-      if (active) {
-        active.set({ fill: "blue" })
-        fabricRef.renderAll()
-      }
-    })
-    // const circle = new fabric.Circle({
-    //   radius: 100,
-    //   fill: "#eef",
-    //   scaleY: 0.5,
-    //   originX: "center",
-    //   originY: "center"
-    // })
-
-    // const text = new fabric.Text("hello world", {
-    //   fontSize: 30,
-    //   originX: "center",
-    //   originY: "center"
-    // })
-    const aa: any[] = []
-    // const path = new fabric.Path("M 20 20 A 20 20 0 0 1 60 20 z")
-    // const path2 = new fabric.Path("M 20 20 A 10 20 0 0 0 10 40 L 40 40  L 40 20 z")
-    // const path3 = new fabric.Path("M  40 20 L 40 40 L 70 40 A  10 20 0 0 0 60 20 z")
-    const path = new fabric.Path("M 0 0 L 40 0  L 40 40 L0 40  z")
-
-    const path4 = new fabric.Path("M 40 40  A 60 60 0 0 1 120 40")
-
-    aa.push(path)
-    // aa.push(path2)
-    // aa.push(path3)
-    aa.push(path4)
-
-    for (const a of aa) {
-      a.set({
-        fill: "#F4D06F",
-        stroke: "#FF8811",
-        opacity: 0.5
-      })
-    }
-    const group = new fabric.Group(aa, {
-      left: 150,
-      top: 100,
-      // angle: -10,
-      subTargetCheck: true,
-      transparentCorners: false,
-      centeredRotation: true,
-      centeredScaling: true,
-      evented: true
-    })
-
-    group.setControlVisible("mt", false)
-    // group.setControlVisible("tr", false)
-    group.setControlVisible("mr", false)
-    // lr.setControlVisible("br", false)
-    group.setControlVisible("mb", false)
-    // group.setControlVisible("bl", false)
-    group.setControlVisible("ml", false)
-    // lr.setControlVisible("mtr", false)
-
-    fabricRef.add(group)
 
     // make the fabric.Canvas instance available to your app
     // updateCanvasContext(canvas)
@@ -134,11 +64,80 @@ const init1 = () => {
   // window.requestAnimationFrame()
   // window.requestAnimationFrame(init1)
 }
+
+const draw = () => {
+  // console.log(f_config)
+  const group: any[] = []
+  let paramStr = ""
+  for (const area of f_config) {
+    console.log(area.computedParam)
+    const { computedParam } = area
+    for (let index = 0; index < computedParam.length; index++) {
+      const param = computedParam[index]
+
+      let pathStr = ""
+      if (param.type === "ARC") {
+        const obj = {
+          rx: param.radius,
+          ry: param.radius,
+          "x-axis-rotation": 0,
+          "large-arc-flag": 0,
+          "sweep-flag": 0,
+          x: Math.abs(param.endPoint?.x || 0),
+          y: Math.abs(param.endPoint?.y || 0)
+        }
+        pathStr = `
+        M ${Math.abs(param.startPoint?.x || 0)} ${Math.abs(param.startPoint?.y || 0)} 
+        A ${obj.rx} ${obj.ry} 
+        ${obj["x-axis-rotation"]} 
+        ${obj["large-arc-flag"]} 
+        ${obj["sweep-flag"]} 
+        ${obj.x} 
+        ${obj.y}`
+        paramStr += ` ${pathStr}`
+        // const path = new fabric.Path(pathStr)
+        // group.push(path)
+      }
+      if (param.type === "LINE") {
+        pathStr = `
+        M ${Math.abs(param.p1?.x || 0)} ${Math.abs(param.p1?.y || 0)} 
+        L ${Math.abs(param.p2?.x || 0)} ${Math.abs(param.p2?.y || 0)}
+        `
+        paramStr += ` ${pathStr}`
+      }
+    }
+    break
+
+    // const path= new fabric.Path("")
+  }
+  console.log(paramStr)
+
+  const path = new fabric.Path(paramStr)
+  group.push(path)
+  for (const g of group) {
+    g.set({
+      fill: "#F4D06F",
+      stroke: "#FF8811",
+      opacity: 0.5
+    })
+  }
+  const fabricGroup = new fabric.Group(group, {
+    // left: 150,
+    // top: 100,
+    // angle: -10,
+    subTargetCheck: true,
+    transparentCorners: false,
+    centeredRotation: true,
+    centeredScaling: true,
+    evented: true
+  })
+  fabricRef.add(fabricGroup)
+}
 onMounted(() => {
   updateCanvasContext()
-  init1()
+  init()
 
-  // drawRuler()
+  draw()
 })
 </script>
 
