@@ -17,7 +17,7 @@ import bizRoute from "@/router/biz"
 import shared from "./modules/shared"
 import { errorRoutes, notFound } from "./modules/error"
 import HomeView from "@/views/HomeView.vue"
-import PixiView from "@/views/PixiView.vue"
+
 import { createRouterGuards } from "./router-guards"
 
 export const routes: Array<RouteRecordRaw> = [
@@ -37,14 +37,7 @@ export const routes: Array<RouteRecordRaw> = [
     },
     component: HomeView
   },
-  {
-    path: "/pixi",
-    name: "pixi",
-    meta: {
-      title: "首页"
-    },
-    component: PixiView
-  },
+
   {
     path: "/about",
     name: "about",

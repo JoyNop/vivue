@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div class="container">
     <canvas ref="canvas" class="c"></canvas>
   </div>
@@ -68,7 +67,7 @@ const draw = () => {
   path.set({
     fill: "transparent",
     stroke: "red",
-    strokeWidth: 2 
+    strokeWidth: 2
   }) // 设置线条颜色
   fabricRef.add(path)
 }
@@ -91,7 +90,3 @@ onMounted(() => {
   // background-color:
 }
 </style>
-=======
-  <div>hello</div>
-</template>
->>>>>>> dea3104898f2a2592a9f91ace36e2b6ba55591cb
