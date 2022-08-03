@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="container">
     <canvas ref="canvas" class="c"></canvas>
   </div>
@@ -90,3 +91,7 @@ onMounted(() => {
   // background-color:
 }
 </style>
+=======
+  <div>hello</div>
+</template>
+>>>>>>> dea3104898f2a2592a9f91ace36e2b6ba55591cb
