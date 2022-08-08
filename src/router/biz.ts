@@ -3,5 +3,6 @@
 // import account from "@/router/modules/account"
 //
 import auth from "@/router/modules/auth"
+import func from "@/router/modules/func"
 // import _ from "lodash"
-export default [...auth]
+export default [...auth, ...func]
